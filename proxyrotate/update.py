@@ -12,18 +12,18 @@ from art import text2art
 # _delay in secs b/w validating next set of proxies,_timeout for proxy validation
 async def updateProxies(_proxies, _bar, _configDir, _delay=20, _timeout=15, _concurrency=120, _retries=2):
     server_id = 0
-    # Terminate and restart haproxy
+    # set PROXY_STATE Variable for set kill_flag(-sf flag) for haproxy
     PROXY_STATE = "INACTIVE"
     while True:
         _newProxies = await proxyvalidate.getProxyList(
             bar=_bar, _existingProxies=_proxies, _timeout=_timeout, _concurrency=_concurrency, _retries=_retries)
-        # Ensure only one thread accessing proxyQueue
+        # Reading newly validated proxies
         _proxy = _newProxies.dequeue()
         _newCount = 0
         # reading old proxies
         with open(f"{_configDir}/proxies.cfg") as config_file:
             _lines = config_file.readlines()
-        # Appending new proxies to queue
+        # Inserting newly validated proxies to config_file
         with open(f"{_configDir}/proxies.cfg", "w") as config_file:
             newProxieString = ""
             while _proxy:

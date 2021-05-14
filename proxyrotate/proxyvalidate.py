@@ -33,7 +33,8 @@ class CircularQueue():
     def size(self):
         return len(self.queue)
 
-# Extract proxies from sourcepage
+
+# Extract proxies from sources
 
 
 async def extractProxies(_url, _client, _proxies, _bar):
