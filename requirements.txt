@@ -6,7 +6,6 @@ beautifulsoup4==4.9.3
 chardet==4.0.0
 idna==3.1
 multidict==5.1.0
-proxyrotate @ file:///home/deadhead/proxyrotate
 soupsieve==2.2.1
 termcolor==1.1.0
 tqdm==4.60.0
